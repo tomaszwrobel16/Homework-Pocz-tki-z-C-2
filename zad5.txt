@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+class dane
+{
+    private:
+        string imie = "imie";
+        string nazwisko = "nazwisko";
+
+    public:
+
+        void czytaj_dane()
+        {
+            cout << "Podaj imie: ";
+            cin >> imie;
+            cout << "Podaj nazwisko: ";
+            cin >> nazwisko;
+        }
+
+        void zapisz_dane_do_pliku()
+        {
+            fstream dane;
+            dane.open("dane.txt");
+            if(dane)
+            {
+                dane << imie << endl;
+                dane << nazwisko << endl;
+                dane.close();
+            }
+
+        }
+
+        void czytaj_dane_z_pliku()
+        {
+            fstream dane;
+            dane.open("dane.txt");
+            if(dane)
+            {
+                getline(dane, imie);
+                getline(dane, nazwisko);
+                dane.close();
+
+                cout << imie << endl;
+                cout << nazwisko << endl;
+            }
+
+        }
+};
+
+int main()
+{
+    dane klient;
+    klient.czytaj_dane();
+    klient.zapisz_dane_do_pliku();
+    klient.czytaj_dane_z_pliku();
+    return 0;
+}
