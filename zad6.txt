@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+string source = "abc.txt";
+
+int main()
+{
+    cout << "Podaj sciezke do pliku: " << endl;
+    cin >> source;
+
+    fstream dane;
+    dane.open(source.c_str());
+    if(dane)
+    {
+        string line;
+        while(!dane.eof())
+        {
+
+            getline(dane, line);
+            cout << line << endl;
+
+        }
+    }
+    else
+    {
+        cout << "Plik nie istnieje!" << endl;
+    }
+
+    dane.close();
+
+    return 0;
+}
